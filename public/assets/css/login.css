@@ -1,0 +1,14 @@
+body{
+    background: rgb(10, 234, 45);
+    background: linear-gradient(0deg, rgba(10, 234, 45, 1) 0%, rgba(88, 154, 230, 1) 100%);
+}
+.free{
+    font-size: 30px;
+    font-weight: bolder;
+    color:black;
+}
+.immo{
+    font-size: 30px;
+    font-weight: bolder;
+    color:green;
+}
