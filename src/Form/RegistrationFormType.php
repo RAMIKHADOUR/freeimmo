@@ -34,32 +34,32 @@ class RegistrationFormType extends AbstractType
             ->add('telephone_fixe',TextType::class,[
                 'attr' => [
                 'placeholder' => 'Telephone Fixe',
-            ],
+            ],'required' => false,
             ])
             ->add('entreprise',TextType::class,[
                 'attr' => [
                 'placeholder' => 'Entreprise',
-            ],
+            ],'required' => false,
             ])
             ->add('site_web',TextType::class,[
                 'attr' => [
                 'placeholder' => 'Website',
-            ],
+            ],'required' => false,
             ])
             ->add('adresse',TextType::class,[
                 'attr' => [
                 'placeholder' => 'Adresse',
-            ],
+            ], 'required' => false,
             ])
             ->add('ville',TextType::class,[
                 'attr' => [
                 'placeholder' => 'Ville',
-            ],
+            ],'required' => false,
             ])
             ->add('code_postale',TextType::class,[
                 'attr' => [
                 'placeholder' => 'Code Postale',
-            ],
+            ],'required' => false,
             ])
             ->add('email',TextType::class,[
                 'attr' => [

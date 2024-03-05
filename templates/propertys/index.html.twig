@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page-Propertys{% endblock %}
+
+{% block body %}
+    <h1>Annonces</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Civilite</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Nreference</th>
+                <th>Surface</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Chambres</th>
+                <th>Salle_bains</th>
+                <th>Etages</th>
+                <th>Numero_etage</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code_postale</th>
+                <th>Region</th>
+                <th>Internet</th>
+                <th>Balcon</th>
+                <th>Garage</th>
+                <th>Salle_sport</th>
+                <th>Piscine</th>
+                <th>Camera_surveillance</th>
+                <th>ImageName</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for property in propertys %}
+            <tr>
+                <td>{{ property.id }}</td>
+                <td>{{ property.civilite }}</td>
+                <td>{{ property.nom }}</td>
+                <td>{{ property.prenom }}</td>
+                <td>{{ property.telephone }}</td>
+                <td>{{ property.email }}</td>
+                <td>{{ property.nreference }}</td>
+                <td>{{ property.surface }}</td>
+                <td>{{ property.description }}</td>
+                <td>{{ property.prix }}</td>
+                <td>{{ property.chambres }}</td>
+                <td>{{ property.salleBains }}</td>
+                <td>{{ property.etages }}</td>
+                <td>{{ property.numeroEtage }}</td>
+                <td>{{ property.adresse }}</td>
+                <td>{{ property.ville }}</td>
+                <td>{{ property.codePostale }}</td>
+                <td>{{ property.region }}</td>
+                <td>{{ property.internet ? 'Yes' : 'No' }}</td>
+                <td>{{ property.balcon ? 'Yes' : 'No' }}</td>
+                <td>{{ property.garage ? 'Yes' : 'No' }}</td>
+                <td>{{ property.salleSport ? 'Yes' : 'No' }}</td>
+                <td>{{ property.piscine ? 'Yes' : 'No' }}</td>
+                <td>{{ property.cameraSurveillance ? 'Yes' : 'No' }}</td>
+                <td>{{ property.imageName }}</td>
+                <td>{{ property.createdAt ? property.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ property.updatedAt ? property.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_propertys_show', {'id': property.id}) }}">show</a>
+                    <a href="{{ path('app_propertys_edit', {'id': property.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="28">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_propertys_new') }}">Create new</a>
+{% endblock %}

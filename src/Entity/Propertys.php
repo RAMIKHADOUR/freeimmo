@@ -10,14 +10,40 @@ use App\Repository\PropertysRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity('email')]
 #[ORM\Entity(repositoryClass: PropertysRepository::class)]
+#[Vich\Uploadable]
 class Propertys
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+      #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min:2,max:50)]
+    private ?string $civilite = null;
+
+   #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min:2,max:50)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min:2,max:50)]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min:2,max:50)]
+    private ?string $telephone = null;
+
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nreference = null;
@@ -90,18 +116,18 @@ class Propertys
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $user = null;
 
-    /*#[ORM\ManyToOne(inversedBy: 'propertys')]
+    #[ORM\ManyToOne(inversedBy: 'propertys')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorys $category = null;
 
     #[ORM\ManyToOne(inversedBy: 'propertys')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?TypeProperty $typeproperty = null;*/
+    private ?TypeProperty $typeproperty = null;
 
     public function __construct()
     {
-        $this->createdAt=new \DateTimeImmutable();
-        $this->updatedAt=new \DateTimeImmutable();
+        $this->createdAt=new DateTimeImmutable();
+        $this->updatedAt=new DateTimeImmutable();
     }
 
 
@@ -325,6 +351,9 @@ class Propertys
         return $this;
     }
 
+ 
+ 
+
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -408,4 +437,148 @@ class Propertys
         return $this->imageName;
     }
 
+
+    /**
+     * Get the value of civilite
+     *
+     * @return ?string
+     */
+    public function getCivilite(): ?string
+    {
+        return $this->civilite;
+    }
+
+    /**
+     * Set the value of civilite
+     *
+     * @param ?string $civilite
+     *
+     * @return self
+     */
+    public function setCivilite(?string $civilite): self
+    {
+        $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nom
+     *
+     * @return ?string
+     */
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set the value of nom
+     *
+     * @param ?string $nom
+     *
+     * @return self
+     */
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of prenom
+     *
+     * @return ?string
+     */
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set the value of prenom
+     *
+     * @param ?string $prenom
+     *
+     * @return self
+     */
+    public function setPrenom(?string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of telephone
+     *
+     * @return ?string
+     */
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set the value of telephone
+     *
+     * @param ?string $telephone
+     *
+     * @return self
+     */
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     *
+     * @return ?string
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @param ?string $email
+     *
+     * @return self
+     */
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of updatedAt
+     *
+     * @return ?\DateTimeImmutable
+     */
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @param ?\DateTimeImmutable $updatedAt
+     *
+     * @return self
+     */
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
 }

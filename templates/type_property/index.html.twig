@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page-Types {% endblock %}
+
+{% block body %}
+    <h1>Types </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type_property</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_property in type_properties %}
+            <tr>
+                <td>{{ type_property.id }}</td>
+                <td>{{ type_property.typeProperty }}</td>
+                <td>
+                    <a href="{{ path('app_type_property_show', {'id': type_property.id}) }}">show</a>
+                    <a href="{{ path('app_type_property_edit', {'id': type_property.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_property_new') }}">Create new</a>
+{% endblock %}
