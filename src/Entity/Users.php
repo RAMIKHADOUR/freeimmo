@@ -76,16 +76,20 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?DateTimeImmutable $createdAt = null;
     
  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Propertys::class)]
-             private Collection $propertys;
+                            private Collection $propertys;
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\ManyToMany(targetEntity: Promotions::class, mappedBy: 'user')]
+    private Collection $promotions;
     
 
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
         $this->propertys = new ArrayCollection();
+        $this->promotions = new ArrayCollection();
   
     
     }
@@ -446,6 +450,33 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Promotions>
+     */
+    public function getPromotions(): Collection
+    {
+        return $this->promotions;
+    }
+
+    public function addPromotion(Promotions $promotion): static
+    {
+        if (!$this->promotions->contains($promotion)) {
+            $this->promotions->add($promotion);
+            $promotion->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePromotion(Promotions $promotion): static
+    {
+        if ($this->promotions->removeElement($promotion)) {
+            $promotion->removeUser($this);
+        }
 
         return $this;
     }

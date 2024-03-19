@@ -4,15 +4,17 @@ namespace App\Entity;
 
 use App\Entity\Users;
 use DateTimeImmutable;
+use App\Entity\TypeProperty;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PropertysRepository;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
-#[UniqueEntity('email')]
+
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: PropertysRepository::class)]
 #[Vich\Uploadable]
 class Propertys
@@ -22,12 +24,11 @@ class Propertys
     #[ORM\Column]
     private ?int $id = null;
 
-      #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min:2,max:50)]
     private ?string $civilite = null;
 
-   #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
     #[Assert\Length(min:2,max:50)]
     private ?string $nom = null;
@@ -46,9 +47,9 @@ class Propertys
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nreference = null;
+    private ?string $reference = null;
 
-     #[ORM\Column]
+    #[ORM\Column]
     private ?float $surface = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -57,16 +58,16 @@ class Propertys
     #[ORM\Column]
     private ?float $prix = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $chambres = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $salle_bains = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $etages = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $numero_etage = null;
 
     #[ORM\Column(length: 255)]
@@ -100,10 +101,10 @@ class Propertys
     private ?bool $camera_surveillance = null;
 
     #[Vich\UploadableField(mapping: 'propertys', fileNameProperty: 'imageName')]
- private ?File $imageFile = null;
+    private ?File $imageFile = null;
 
- #[ORM\Column(type:'string', nullable: true)]
- private ?string $imageName = null;
+    #[ORM\Column(type:'string', nullable: true)]
+    private ?string $imageName = null;
 
 
     #[ORM\Column]
@@ -112,15 +113,16 @@ class Propertys
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+   
     #[ORM\ManyToOne(inversedBy: 'propertys',targetEntity:Users::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'propertys')]
+    #[ORM\ManyToOne(inversedBy: 'propertys',targetEntity:Categorys::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorys $category = null;
 
-    #[ORM\ManyToOne(inversedBy: 'propertys')]
+    #[ORM\ManyToOne(inversedBy: 'propertys',targetEntity:TypeProperty::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?TypeProperty $typeproperty = null;
 
@@ -136,14 +138,14 @@ class Propertys
         return $this->id;
     }
 
-    public function getNreference(): ?string
+    public function getReference(): ?string
     {
-        return $this->nreference;
+        return $this->reference;
     }
 
-    public function setNreference(string $nreference): static
+    public function setReference(string $reference): static
     {
-        $this->nreference = $nreference;
+        $this->reference = $reference;
 
         return $this;
     }

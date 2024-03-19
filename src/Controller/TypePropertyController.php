@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/types')]
 class TypePropertyController extends AbstractController
 {
-    #[Route('/', name: 'app_types', methods: ['GET'])]
+    #[Route('/', name: 'app_type_property_index', methods: ['GET'])]
     public function index(TypePropertyRepository $typePropertyRepository): Response
     {
         return $this->render('type_property/index.html.twig', [
@@ -69,7 +69,9 @@ class TypePropertyController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_type_property_delete', methods: ['POST'])]
-    public function delete(Request $request, TypeProperty $typeProperty, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request,
+    TypeProperty $typeProperty,
+    EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$typeProperty->getId(), $request->request->get('_token'))) {
             $entityManager->remove($typeProperty);

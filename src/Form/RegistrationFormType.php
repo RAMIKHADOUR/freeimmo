@@ -21,51 +21,35 @@ class RegistrationFormType extends AbstractType
     {
         $builder
          ->add('nom', TextType::class,[
-                'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50','placeholder' => 'Nom'],
+                'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50',],
                 'constraints'=>[new NotBlank(),new Assert\Length(['min'=>2,'max'=> 50])]])
 
             ->add('prenom', TextType::class,[
-                'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50','placeholder' => 'Prenom'],
+                'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50',],
                 'constraints'=>[new NotBlank(),new Assert\Length(['min'=>2,'max'=> 50])]])
             ->add('telephone_portable',TextType::class,[
-                    'attr'=>['class'=>'form-control','placeholder' => 'Mobile'],
+                    'attr'=>['class'=>'form-control',],
                     'label_attr'=>['class'=>'form-label'],
                     'constraints'=>[new Assert\NotBlank()]])
             ->add('telephone_fixe',TextType::class,[
-                'attr' => [
-                'placeholder' => 'Telephone Fixe',
-            ],'required' => false,
+                'required' => false,
             ])
             ->add('entreprise',TextType::class,[
-                'attr' => [
-                'placeholder' => 'Entreprise',
-            ],'required' => false,
+              'required' => false,
             ])
             ->add('site_web',TextType::class,[
-                'attr' => [
-                'placeholder' => 'Website',
-            ],'required' => false,
+                'required' => false,
             ])
             ->add('adresse',TextType::class,[
-                'attr' => [
-                'placeholder' => 'Adresse',
-            ], 'required' => false,
+                'required' => false,
             ])
             ->add('ville',TextType::class,[
-                'attr' => [
-                'placeholder' => 'Ville',
-            ],'required' => false,
+               'required' => false,
             ])
             ->add('code_postale',TextType::class,[
-                'attr' => [
-                'placeholder' => 'Code Postale',
-            ],'required' => false,
+                'required' => false,
             ])
-            ->add('email',TextType::class,[
-                'attr' => [
-                'placeholder' => 'Email',
-            ],
-            ])
+            ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -76,10 +60,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options'  => ['label' => 'Mot de passe',
-                'attr'=>['placeholder' => 'Mot de Passe']],
+                'first_options'  => ['label' => 'Mot de passe',],
                 'second_options' => ['label' => 'Confirmer le mot de passe',
-                'attr'=>['placeholder' => 'Confirmer Mot de Passe']],
+                ],
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [

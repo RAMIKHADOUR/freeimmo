@@ -25,10 +25,10 @@
                     <a class="navbar-brand text-brand" href="{{path('app_home')}}"><span class="free">Free</span><span class="immo">Immo</span></a>
                     </div>
                     <div>
-                        <a class="text-decoration-none m-4 text-black fs-5 fw-bolder"
+                        <a class="text-decoration-none m-4 text-success fs-5 fw-bolder"
                             href="{{path('app_home')}}">Accueil</a>
                         
-                    <a href="{{ path('app_logout') }}">Me Déconnecter</a>
+                    <a class="btn btn-success m-4 text-white fs-5 fw-bold" href="{{ path('app_register') }}">S'Inscrire</a>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                             </div>
                             {% endif %}
 
-                            <h1 class="h3 mb-3 fw-bolder text-black">Connexion</h1>
+                            <h1 class="h3 mb-3 fw-bolder text-success">Connexion</h1>
                             <label for="inputEmail"></label>
                             <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
                                 class="form-control" autocomplete="email" required autofocus placeholder="Votre Email">
@@ -69,7 +69,7 @@
                                 </label>
                             </div>
 
-                            <button class="btn btn-lg btn-dark mt-4 fw-bold text-success" type="submit">
+                            <button class="btn btn-lg btn-success mt-4 fw-bold text-white" type="submit">
                                 Se connecter
                             </button>
                         </form>

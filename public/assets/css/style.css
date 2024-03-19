@@ -3,6 +3,7 @@ body {
   color: #555555;
 }
 
+
 h1,
 h2,
 h3,
@@ -1339,12 +1340,8 @@ a:hover {
   letter-spacing: 0.03em;
 }
 
-.card-footer-a {
-  width: 100%;
-  position: absolute;
-  z-index: 2;
-  background-color: #2eca6a;
-}
+
+
 
 .card-info {
   list-style: none;

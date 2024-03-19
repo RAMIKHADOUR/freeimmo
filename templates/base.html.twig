@@ -22,7 +22,11 @@
     <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
+    
+
+
     <!-- Template Main CSS File -->
+    <link href="{{asset('assets/css/home.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     
     
@@ -36,7 +40,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-<body>
+<div>
 
 {% block stylesheets %}{% endblock %}
 {% block javascripts %}{% endblock %}
@@ -52,8 +56,9 @@
 
     {% block footer %}
     {% include 'partials/_footer.html.twig' %}
+    
     {% endblock %}
+    
 
 </body>
-
 </html>

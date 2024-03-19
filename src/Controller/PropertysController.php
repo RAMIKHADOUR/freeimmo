@@ -45,8 +45,11 @@ class PropertysController extends AbstractController
     #[Route('/{id}', name: 'app_propertys_show', methods: ['GET'])]
     public function show(Propertys $property): Response
     {
+        $user = $property->getUser();
         return $this->render('propertys/show.html.twig', [
             'property' => $property,
+            'user' =>$user,
+           
         ]);
     }
 
@@ -69,7 +72,8 @@ class PropertysController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_propertys_delete', methods: ['POST'])]
-    public function delete(Request $request, Propertys $property, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request,
+     Propertys $property, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$property->getId(), $request->request->get('_token'))) {
             $entityManager->remove($property);

@@ -11,8 +11,7 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('categorie')
-            ->add('typeproperty')
+            ->add('field_name')
         ;
     }
 
