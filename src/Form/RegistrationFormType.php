@@ -20,7 +20,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-         ->add('nom', TextType::class,[
+            ->add('nom', TextType::class,[
                 'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50',],
                 'constraints'=>[new NotBlank(),new Assert\Length(['min'=>2,'max'=> 50])]])
 

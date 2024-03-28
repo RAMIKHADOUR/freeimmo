@@ -21,6 +21,20 @@ class PropertysRepository extends ServiceEntityRepository
         parent::__construct($registry, Propertys::class);
     }
 
+  /**
+     * Recherche les annonces en fonction du formulaire
+     * @return void
+     */
+    public function search($mots){
+        $query = $this->createQueryBuilder('p');
+        if($mots != null){
+            $query->andWhere('MATCH_AGAINST(p.ville, p.region) AGAINST (:mots boolean)>0')
+                ->setParameter('mots', $mots);
+        }
+       
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Propertys[] Returns an array of Propertys objects
 //     */
@@ -46,17 +60,6 @@ class PropertysRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-/**
-* @return Propertys[] Returns an array of Propertys objects
-*/
-public function findBySearch($text): array
-{
-return $this->createQueryBuilder('p')
-->andWhere('p.region LIKE :val')
-->setParameter('val', "%$text%")
-->getQuery()
-->getResult()
-;
-}
+
 
 }

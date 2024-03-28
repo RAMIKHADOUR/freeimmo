@@ -6,19 +6,28 @@ use App\Entity\Propertys;
 use App\Form\PropertysType;
 use App\Repository\PropertysRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/propertys')]
 class PropertysController extends AbstractController
 {
     #[Route('/', name: 'app_propertys_index', methods: ['GET'])]
-    public function index(PropertysRepository $propertysRepository): Response
+    public function index(PropertysRepository $propertysRepository,
+    PaginatorInterface $paginator,
+    Request $request): Response
     {
+        $propertys = $paginator->paginate(
+        $propertysRepository->findAll(),
+        $request->query->getInt('page', 1),
+        4
+    );
+
         return $this->render('propertys/index.html.twig', [
-            'propertys' => $propertysRepository->findAll(),
+            'propertys' =>$propertys,
         ]);
     }
 
@@ -30,8 +39,14 @@ class PropertysController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $property = $form->getData();
             $entityManager->persist($property);
             $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Votre Annonce a été créé avec success !'
+            );
+            
 
             return $this->redirectToRoute('app_propertys_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -12,9 +12,13 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
-#[ORM\HasLifecycleCallbacks]
+
+
+#[ORM\Table(name:"propertys")]
+#[ORM\Index(columns:["ville", "region"], flags:["fulltext"])]
 #[ORM\Entity(repositoryClass: PropertysRepository::class)]
 #[Vich\Uploadable]
 class Propertys

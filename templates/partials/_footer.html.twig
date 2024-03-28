@@ -1,27 +1,32 @@
 
-<footer style="background-color: rgb(15, 153, 75);">
-    <div class="card m-5" id="subscribe" style="background: rgb(2, 0, 36);
-  background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(2, 72, 108, 1) 35%, rgba(0, 212, 255, 1) 100%);">
-        <div class="card-body m-4">
-            <form action="">
-                <strong class="text-white">Ne manquez pas de vous abonner à notre newsletter!</strong>
-                <label class="input-group mt-2">
+<footer style="background-color: rgb(16, 205, 98);">
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
+                    class="fab fa-twitter"></i></a>
+            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
+                    class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
+                    class="fab fa-youtube"></i></a>
+            <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i
+                    class="fab fa-linkedin-in"></i></a>
 
-                    <input type="text" class="form-control" placeholder="Votre E-mail">
-                    <button class="btn btn-success" type="button" id="button-addon2">Subscribe</button>
-                </label>
-            </form>
-        </div>
+        </section>
+        <!-- Section: Social media -->
     </div>
-
-    <div class="text-center fw-bolder">
-        <p class="text-decoration-none text-white">
-            <a href="#!" class=" text-decoration-none text-white m-2">A Propos</a>
-            <a href="#!" class=" text-decoration-none text-white m-2">Acheter</a>
-            <a href="#!" class=" text-decoration-none text-white m-2">Location</a>
-            <a href="{{path('app_contact')}}" class=" text-decoration-none text-white m-3">Contact</a>
-            © 2024 Copyright : FreeImmo
+    <div class="text-center fw-bold">
+        <p class="text-decoration-none text-dark">
+            <a href="{{path('app_home')}}" class=" text-decoration-none m-2">Accueil</a>
+            <a href="#!" class=" text-decoration-none m-2">A Propos</a>
+            <a href="{{path('app_login')}}" class=" text-decoration-none m-2">Acheter</a>
+            <a href="{{path('app_login')}}" class=" text-decoration-none m-2">Location</a>
+            <a href="{{path('app_contact')}}" class=" text-decoration-none m-3">Contact</a>
         </p>
+
     </div>
+
+    <p class="text-decoration-none text-success fw-bolder">© 2024 Copyright : FreeImmo</p>
 </footer>
 

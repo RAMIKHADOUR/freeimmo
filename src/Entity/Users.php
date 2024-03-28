@@ -76,7 +76,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?DateTimeImmutable $createdAt = null;
     
  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Propertys::class)]
-                            private Collection $propertys;
+    private Collection $propertys;
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
