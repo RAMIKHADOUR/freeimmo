@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use App\Form\SearchAnnonceType;
 use App\Repository\PropertysRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -17,7 +15,6 @@ class HomeController extends AbstractController
      PropertysRepository $propertysRepository,
      PaginatorInterface $paginator): Response
     {
-        
 $form = $this->createForm(SearchAnnonceType::class);
 $search = $form->handleRequest($request);
 if($form->isSubmitted() && $form->isValid()) {
@@ -31,7 +28,6 @@ if($form->isSubmitted() && $form->isValid()) {
         $request->query->getInt('page', 1),
         4
     );
-
 return $this->render('home/home.html.twig', [
 'controller_name' => 'HomeController',
 'propertys' => $propertys,

@@ -64,8 +64,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = ['ROLE_USER'];
 
     private ?string $plainPassword=null;
-
-
     /**
      * @var string The hashed password
      */
